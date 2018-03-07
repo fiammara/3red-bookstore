@@ -1,4 +1,4 @@
-package com.vtvpmc.threered.bookstore;
+package lt.vtvpmc.threered.bookstore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

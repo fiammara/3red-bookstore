@@ -1,4 +1,4 @@
-package com.vtvpmc.threered.bookstore.model;
+package lt.vtvpmc.threered.bookstore.model;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
