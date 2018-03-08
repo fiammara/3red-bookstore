@@ -16,25 +16,29 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "book")
 public class Book {
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String category; 
+	@ManyToMany
+	@JoinTable(name = "category_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private Set<Category> categories = new HashSet<Category>();
 	private String photoPath; // kaip saugoti DB??
 	private String title;
 	@ManyToMany
-	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),inverseJoinColumns = @JoinColumn(name = "author_id"))
+	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private Set<Author> authors = new HashSet<Author>();
 	private String year;
 	private String isbn;
 	private BigDecimal price;
 	private String description;
 	private int noOfUnits;
+	boolean available;
+
 	// ratings
-	//comments
-	
+	// comments
+
 	public Book() {
-		
+
 	}
 
 	public Long getId() {
@@ -45,12 +49,20 @@ public class Book {
 		this.id = id;
 	}
 
-	public String getCategory() {
-		return category;
+	public Set<Category> getCategories() {
+		return categories;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
+	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 	public String getPhotoPath() {
@@ -116,6 +128,5 @@ public class Book {
 	public void setNoOfUnits(int noOfUnits) {
 		this.noOfUnits = noOfUnits;
 	}
-	
-	
+
 }

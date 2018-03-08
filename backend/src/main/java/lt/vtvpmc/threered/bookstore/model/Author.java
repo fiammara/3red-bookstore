@@ -13,16 +13,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "author")
 public class Author {
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String firstName;
 	private String lastName;
 	@ManyToMany(mappedBy = "authors")
 	private Set<Book> books = new HashSet<Book>();
-	
+
 	public Author() {
-		
+
 	}
 
 	public Long getId() {
@@ -56,5 +56,5 @@ public class Author {
 	public void setBooks(Set<Book> books) {
 		this.books = books;
 	}
-	
+
 }
