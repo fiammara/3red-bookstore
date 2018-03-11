@@ -35,7 +35,7 @@ public class BookController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Get books", notes = "Returns all books in the BookStore")
 	public List<Book> getBooks(){
-		return service.getBooks();
+		return service.getAllBooks();
 	}
 
 }
