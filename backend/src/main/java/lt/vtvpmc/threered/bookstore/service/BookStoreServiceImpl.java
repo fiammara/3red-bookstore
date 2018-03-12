@@ -1,11 +1,11 @@
 package lt.vtvpmc.threered.bookstore.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import lt.vtvpmc.threered.bookstore.model.Author;
 import lt.vtvpmc.threered.bookstore.model.Book;
@@ -19,7 +19,6 @@ public class BookStoreServiceImpl implements BookStoreService {
 	private BookRepository bookRepo;
 	private AuthorRepository authorRepo;
 	private CategoryRepository categoryRepo;
-	
 
 	@Autowired
 	public BookStoreServiceImpl(BookRepository bookRepo, AuthorRepository authorRepo, CategoryRepository categoryRepo) {
@@ -30,7 +29,15 @@ public class BookStoreServiceImpl implements BookStoreService {
 
 	@Transactional
 	@Override
-	public void addBook(@RequestBody Book book) {
+	public void addBook(Set<Category> categories, Set<Author> authors, Book book) {
+		for (Category c : categories) {
+			this.addCategory(c);
+			book.getCategories().add(c);
+		}
+		for (Author a : authors) {
+			this.addAuthor(a);
+			book.getAuthors().add(a);
+		}
 		bookRepo.save(book);
 	}
 
@@ -39,28 +46,40 @@ public class BookStoreServiceImpl implements BookStoreService {
 	public List<Book> getAllBooks() {
 		return bookRepo.findAll();
 	}
-	
+
 	@Transactional
 	@Override
 	public void addAuthor(Author author) {
-		authorRepo.save(author);
+		Author existant = authorRepo.findAuthoryByFirstNameAndLastName(author.getFirstName(), author.getLastName());
+		if (existant == null) {
+			authorRepo.save(author);
+		} else {
+			author.setId(existant.getId());
+			authorRepo.save(author);
+		}
 	}
-	
+
 	@Transactional(readOnly = true)
 	@Override
-	public List<Author> getAllAuthors(){
+	public List<Author> getAllAuthors() {
 		return authorRepo.findAll();
 	}
-	
+
 	@Transactional
 	@Override
 	public void addCategory(Category category) {
-		categoryRepo.save(category);
+		Category existant = categoryRepo.findCategoryByName(category.getName());
+		if (existant == null) {
+			categoryRepo.save(category);
+		} else {
+			category.setId(existant.getId());
+			categoryRepo.save(category);
+		}
 	}
-	
+
 	@Transactional(readOnly = true)
 	@Override
-	public List<Category> getAllCategories(){
+	public List<Category> getAllCategories() {
 		return categoryRepo.findAll();
 	}
 
