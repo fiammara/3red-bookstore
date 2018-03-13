@@ -20,7 +20,7 @@ public class ThreeredApplication extends SpringBootServletInitializer {
 	@Bean
 	public Docket docket() {
 		return new Docket(DocumentationType.SWAGGER_2)
-				.select().apis(RequestHandlerSelectors.basePackage("com.vtvpmc.threered.bookstore"))
+				.select().apis(RequestHandlerSelectors.basePackage("lt.vtvpmc.threered.bookstore"))
 				.build();
 	}
 

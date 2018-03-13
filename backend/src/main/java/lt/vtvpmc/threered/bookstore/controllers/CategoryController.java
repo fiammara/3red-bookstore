@@ -1,7 +1,6 @@
 package lt.vtvpmc.threered.bookstore.controllers;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,33 +11,32 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lt.vtvpmc.threered.bookstore.model.Author;
-import lt.vtvpmc.threered.bookstore.model.Book;
 import lt.vtvpmc.threered.bookstore.model.Category;
 import lt.vtvpmc.threered.bookstore.service.BookStoreService;
 
 @RestController
-@Api(value = "book")
-@RequestMapping(value = "api/books")
-public class BookController {
+@Api(value = "category")
+@RequestMapping(value = "api/categories")
+public class CategoryController {
 	private BookStoreService service;
 	
-	
 	@Autowired
-	public BookController(BookStoreService service) {
+	public CategoryController(BookStoreService service) {
 		this.service = service;
 	}
-
+	
 	@RequestMapping(method = RequestMethod.POST)
-	@ApiOperation(value = "Add book", notes = "Adds new book to the BookStore")
-	public void addBook(@ApiParam  @RequestBody Set<Category> categories, @ApiParam  @RequestBody Set<Author> authors, @ApiParam @RequestBody Book book) {
-		service.addBook(categories, authors, book);
+	@ApiOperation(value = "Add category", notes = "Adds new category to the BookStore")
+	public void addCategory(@ApiParam @RequestBody Category category) {
+		service.addCategory(category);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	@ApiOperation(value = "Get books", notes = "Returns all books in the BookStore")
-	public List<Book> getBooks(){
-		return service.getAllBooks();
+	@ApiOperation(value = "Get all categories", notes = "Returns all categories in the BookStore")
+	public List<Category> getAllCategories(){
+		return service.getAllCategories();
 	}
+	
+	
 
 }
