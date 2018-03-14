@@ -3,6 +3,7 @@ package lt.vtvpmc.threered.bookstore.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,18 +18,15 @@ import javax.persistence.Table;
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		private Long id;
 		private String name;
-		@ManyToMany(mappedBy = "categories")
-		private Set<Book> books = new HashSet<Book>();
+//		@ManyToMany(mappedBy = "categories")
+//		private Set<Book> books = new HashSet<Book>();
 		
 		public Category() {
 			
 		}
 
-		public Category(Long id, String name, Set<Book> books) {
-			super();
-			this.id = id;
+		public Category(String name) {
 			this.name = name;
-			this.books = books;
 		}
 
 		public Long getId() {
@@ -47,13 +45,13 @@ import javax.persistence.Table;
 			this.name = name;
 		}
 
-		public Set<Book> getBooks() {
-			return books;
-		}
-
-		public void setBooks(Set<Book> books) {
-			this.books = books;
-		}
+//		public Set<Book> getBooks() {
+//			return books;
+//		}
+//
+//		public void setBooks(Set<Book> books) {
+//			this.books = books;
+//		}
 		
 	}
 
