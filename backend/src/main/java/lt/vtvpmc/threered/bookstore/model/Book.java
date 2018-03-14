@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Book {
 	@ManyToMany
 	@JoinTable(name = "category_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<Category>();
-	private String photoPath; // kaip saugoti DB??
+	private String photoPath;
 	private String title;
 	@ManyToMany
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
@@ -39,6 +40,18 @@ public class Book {
 
 	public Book() {
 
+	}
+
+	public Book(String photoPath, String title, String year, String isbn, BigDecimal price, String description,
+			int noOfUnits, boolean available) {
+		this.photoPath = photoPath;
+		this.title = title;
+		this.year = year;
+		this.isbn = isbn;
+		this.price = price;
+		this.description = description;
+		this.noOfUnits = noOfUnits;
+		this.available = available;
 	}
 
 	public Long getId() {
