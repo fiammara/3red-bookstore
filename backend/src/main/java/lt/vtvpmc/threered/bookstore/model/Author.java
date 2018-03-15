@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "author")
 public class Author {
@@ -57,6 +59,7 @@ public class Author {
 		this.lastName = lastName;
 	}
 
+	@JsonIgnore
 	public Set<Book> getBooks() {
 		return books;
 	}
