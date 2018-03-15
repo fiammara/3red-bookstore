@@ -30,19 +30,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                    .antMatchers("/resources/**", "/registration").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .and()
-                .logout()
-                    .permitAll();
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+    	httpSecurity
+        .authorizeRequests()
+            .antMatchers("/").permitAll().and()
+            .authorizeRequests().antMatchers("/h2-console/**").permitAll()
+            .and()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll();
+            httpSecurity.csrf().disable();
+            httpSecurity.headers().frameOptions().disable();
+
     }
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
