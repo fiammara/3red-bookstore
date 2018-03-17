@@ -3,8 +3,10 @@ import React from 'react';
   const Login = () => (
     <div className='login'>
      <form>
-       <input name="user"/>
-       <input name="password"/>
+       <label>Username</label><br />
+       <input name="user"/><br />
+       <label>Password</label><br />
+       <input name="password"/><br />
      </form>
      <button>
        Submit
