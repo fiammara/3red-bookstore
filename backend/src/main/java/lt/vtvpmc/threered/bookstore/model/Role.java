@@ -1,43 +1,41 @@
 package lt.vtvpmc.threered.bookstore.model;
 
-import org.hibernate.annotations.NaturalId;
+import java.util.Set;
+
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "roles")
 public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	 private Long id;
+	    private String name;
+	    private Set<User> users;
 
-    @Enumerated(EnumType.STRING)
-    @NaturalId
-    @Column(length = 60)
-    private RoleName name;
+	    @Id
+	    @GeneratedValue(strategy = GenerationType.AUTO)
+	    public Long getId() {
+	        return id;
+	    }
 
-    public Role() {
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
 
-    }
+	    public String getName() {
+	        return name;
+	    }
 
-    public Role(RoleName name) {
-        this.name = name;
-    }
+	    public void setName(String name) {
+	        this.name = name;
+	    }
 
-    public Long getId() {
-        return id;
-    }
+	    @ManyToMany(mappedBy = "roles")
+	    public Set<User> getUsers() {
+	        return users;
+	    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public RoleName getName() {
-        return name;
-    }
-
-    public void setName(RoleName name) {
-        this.name = name;
-    }
-
-}
+	    public void setUsers(Set<User> users) {
+	        this.users = users;
+	    }
+	}

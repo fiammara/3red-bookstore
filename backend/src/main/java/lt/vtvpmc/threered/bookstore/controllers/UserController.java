@@ -1,66 +1,65 @@
 package lt.vtvpmc.threered.bookstore.controllers;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import lt.vtvpmc.threered.bookstore.exception.ResourceNotFoundException;
 import lt.vtvpmc.threered.bookstore.model.User;
+import lt.vtvpmc.threered.bookstore.service.SecurityService;
+import lt.vtvpmc.threered.bookstore.service.UserService;
+import lt.vtvpmc.threered.bookstore.validator.UserValidator;
 
-import lt.vtvpmc.threered.bookstore.payload.UserIdentityAvailability;
-import lt.vtvpmc.threered.bookstore.payload.UserProfile;
-import lt.vtvpmc.threered.bookstore.payload.UserSummary;
-import lt.vtvpmc.threered.bookstore.repository.UserRepository;
-import lt.vtvpmc.threered.bookstore.security.CurrentUser;
-import lt.vtvpmc.threered.bookstore.security.UserPrincipal;
 
-@RestController
+@Controller
 public class UserController {
+    @Autowired
+    private UserService userService;
 
     @Autowired
-    private UserRepository userRepository;
+    private SecurityService securityService;
 
- 
+    @Autowired
+    private UserValidator userValidator;
 
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String registration(Model model) {
+        model.addAttribute("userForm", new User());
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
-    @GetMapping("/user/me")
-    @PreAuthorize("hasRole('USER')")
-    public UserSummary getCurrentUser(@CurrentUser UserPrincipal currentUser) {
-        UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUsername(), currentUser.getName());
-        return userSummary;
+        return "registration";
     }
 
-    @GetMapping("/user/checkUsernameAvailability")
-    public UserIdentityAvailability checkUsernameAvailability(@RequestParam(value = "username") String username) {
-        Boolean isAvailable = !userRepository.existsByUsername(username);
-        return new UserIdentityAvailability(isAvailable);
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+        userValidator.validate(userForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+
+        userService.save(userForm);
+
+        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+
+        return "redirect:/welcome";
     }
 
-    @GetMapping("/user/checkEmailAvailability")
-    public UserIdentityAvailability checkEmailAvailability(@RequestParam(value = "email") String email) {
-        Boolean isAvailable = !userRepository.existsByEmail(email);
-        return new UserIdentityAvailability(isAvailable);
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
+
+        return "login";
     }
 
-    @GetMapping("/users/{username}")
-    public UserProfile getUserProfile(@PathVariable(value = "username") String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
-
-
-        UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getName(), user.getCreatedAt());
-
-        return userProfile;
+    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    public String welcome(Model model) {
+        return "welcome";
     }
-
-   
-
-
-  
-
 }
