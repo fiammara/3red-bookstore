@@ -1,112 +1,60 @@
 package lt.vtvpmc.threered.bookstore.model;
 
-
-import org.hibernate.annotations.NaturalId;
-
-import lt.vtvpmc.threered.bookstore.audit.DateAudit;
-
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.*;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {
-            "username"
-        }),
-        @UniqueConstraint(columnNames = {
-            "email"
-        })
-})
-public class User extends DateAudit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Table(name = "users")
+public class User {
+	 private Long id;
+	    private String username;
+	    private String password;
+	    private String passwordConfirm;
+	    private Set<Role> roles;
 
-    @NotBlank
-    @Size(max = 40)
-    private String name;
+	    @Id
+	    @GeneratedValue(strategy = GenerationType.AUTO)
+	    public Long getId() {
+	        return id;
+	    }
 
-    @NotBlank
-    @Size(max = 15)
-    private String username;
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
 
-    @NaturalId
-    @NotBlank
-    @Size(max = 40)
-    @Email
-    private String email;
+	    public String getUsername() {
+	        return username;
+	    }
 
-    @NotBlank
-    @Size(max = 100)
-    private String password;
+	    public void setUsername(String username) {
+	        this.username = username;
+	    }
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+	    public String getPassword() {
+	        return password;
+	    }
 
-    public User() {
+	    public void setPassword(String password) {
+	        this.password = password;
+	    }
 
-    }
+	    @Transient
+	    public String getPasswordConfirm() {
+	        return passwordConfirm;
+	    }
 
-    public User(String name, String username, String email, String password) {
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
+	    public void setPasswordConfirm(String passwordConfirm) {
+	        this.passwordConfirm = passwordConfirm;
+	    }
 
-    public Long getId() {
-        return id;
-    }
+	    @ManyToMany
+	    @JoinTable(name = "users_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	    public Set<Role> getRoles() {
+	        return roles;
+	    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-}
+	    public void setRoles(Set<Role> roles) {
+	        this.roles = roles;
+	    }
+	}
