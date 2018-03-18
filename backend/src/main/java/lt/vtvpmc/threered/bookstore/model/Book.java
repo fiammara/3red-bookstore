@@ -13,6 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.ISBN;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
+
 
 @Entity
 @Table(name = "book")
@@ -23,16 +30,23 @@ public class Book {
 	@ManyToMany
 	@JoinTable(name = "category_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<Category>();
+	@URL
 	private String photoPath;
+	@NotNull
 	private String title;
 	@ManyToMany
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private Set<Author> authors = new HashSet<Author>();
+	@Length(min=4, max=4)
 	private String year;
+	@ISBN
 	private String isbn;
+	@Digits(integer = 5 , fraction = 2)
 	private BigDecimal price;
 	private String description;
+	@NotNull
 	private int noOfUnits;
+	@NotNull
 	boolean available;
 
 	// ratings
