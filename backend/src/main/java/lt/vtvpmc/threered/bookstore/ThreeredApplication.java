@@ -2,7 +2,13 @@ package lt.vtvpmc.threered.bookstore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
+
+
 import org.springframework.context.annotation.Bean;
 
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -12,7 +18,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @SpringBootApplication
-public class ThreeredApplication extends SpringBootServletInitializer {
+@EntityScan(basePackageClasses = {
+		ThreeredApplication.class,
+		Jsr310JpaConverters.class
+})
+public class ThreeredApplication  {
+	@PostConstruct
+	void init() {
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(ThreeredApplication.class, args);
 	}
