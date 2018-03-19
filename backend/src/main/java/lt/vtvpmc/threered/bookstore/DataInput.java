@@ -11,15 +11,23 @@ import org.springframework.stereotype.Component;
 import lt.vtvpmc.threered.bookstore.model.Author;
 import lt.vtvpmc.threered.bookstore.model.Book;
 import lt.vtvpmc.threered.bookstore.model.Category;
+import lt.vtvpmc.threered.bookstore.model.Role;
+import lt.vtvpmc.threered.bookstore.model.User;
 import lt.vtvpmc.threered.bookstore.service.BookStoreService;
+import lt.vtvpmc.threered.bookstore.service.UserService;
 
 @Component
 public class DataInput implements CommandLineRunner {
-	private BookStoreService service;
+	private BookStoreService bookService;
+	
+	
 	
 	@Autowired
-	public DataInput(BookStoreService service) {
-		this.service = service;
+	public DataInput(BookStoreService bookService) {
+		this.bookService = bookService;
+		
+		
+		
 	}
 
 	@Override
@@ -46,10 +54,11 @@ public class DataInput implements CommandLineRunner {
 		
 		
 		
-		Book cooking = new Book("https://book", "Cooking", "2016", "5667291919", new BigDecimal("20"), "Cooking book", 4, true);
-		service.addBook(categories, authors, cooking);
-		Book cooking2 = new Book("https://book", "Cooking", "2016", "5667291910", new BigDecimal("20"), "Cooking book", 4, true);
-		service.addBook(categories2, authors2, cooking2);
+		Book cooking = new Book(categories, "https://book", "Cooking", authors, "2016", "9781401301958", new BigDecimal("20"), "Cooking book", 4, true);
+		bookService.addBook(cooking);
+		Book cooking2 = new Book(categories2, "https://book", "Cooking", authors, "2016", "9781250146250", new BigDecimal("20"), "Cooking book", 4, true);
+		bookService.addBook(cooking2);
+		
 		
 
 	}

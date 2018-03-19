@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "book")
@@ -23,16 +25,23 @@ public class Book {
 	@ManyToMany
 	@JoinTable(name = "category_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<Category>();
+	@NotNull
 	private String photoPath;
+	@NotNull
 	private String title;
 	@ManyToMany
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private Set<Author> authors = new HashSet<Author>();
+	@Length(min=4, max=4)
 	private String year;
+	@Length(min=10, max=13)
 	private String isbn;
+	@Digits(integer = 5 , fraction = 2)
 	private BigDecimal price;
 	private String description;
+	@NotNull
 	private int noOfUnits;
+	@NotNull
 	boolean available;
 
 	// ratings
@@ -42,10 +51,14 @@ public class Book {
 
 	}
 
-	public Book(String photoPath, String title, String year, String isbn, BigDecimal price, String description,
-			int noOfUnits, boolean available) {
+	public Book(Set<Category> categories, @NotNull String photoPath, @NotNull String title, Set<Author> authors,
+			@Length(min = 4, max = 4) String year, @Length(min = 10, max = 13) String isbn,
+			@Digits(integer = 5, fraction = 2) BigDecimal price, String description, @NotNull int noOfUnits,
+			@NotNull boolean available) {
+		this.categories = categories;
 		this.photoPath = photoPath;
 		this.title = title;
+		this.authors = authors;
 		this.year = year;
 		this.isbn = isbn;
 		this.price = price;
@@ -53,6 +66,8 @@ public class Book {
 		this.noOfUnits = noOfUnits;
 		this.available = available;
 	}
+
+
 
 	public Long getId() {
 		return id;

@@ -1,7 +1,6 @@
 package lt.vtvpmc.threered.bookstore.service;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,16 +28,21 @@ public class BookStoreServiceImpl implements BookStoreService {
 
 	@Transactional
 	@Override
-	public void addBook(Set<Category> categories, Set<Author> authors, Book book) {
-		for (Category c : categories) {
-			this.addCategory(c);
-			book.getCategories().add(c);
+	public void addBook(Book book) {
+		Book existant = bookRepo.findBookByIsbn(book.getIsbn());
+		if (existant != null) {
+			bookRepo.save(book);
+		} else {
+			for (Category c : book.getCategories()) {
+				this.addCategory(c);
+				book.getCategories().add(c);
+			}
+			for (Author a : book.getAuthors()) {
+				this.addAuthor(a);
+				book.getAuthors().add(a);
+			}
+			bookRepo.save(book);
 		}
-		for (Author a : authors) {
-			this.addAuthor(a);
-			book.getAuthors().add(a);
-		}
-		bookRepo.save(book);
 	}
 
 	@Transactional(readOnly = true)

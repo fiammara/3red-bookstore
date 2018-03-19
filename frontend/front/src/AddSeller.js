@@ -18,7 +18,7 @@ import React from 'react';
        <label>Birthday</label><br />
        <input name="birthday"/><br />
        <label>Address</label><br />
-       <input name="address" />><br />
+       <input name="address" /><br />
      </form>
      <button>
        Submit
