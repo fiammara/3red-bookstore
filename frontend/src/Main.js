@@ -6,6 +6,7 @@ import AdminMenu from './AdminMenu';
 import AddBook from './AddBook';
 import AddAdmin from './AddAdmin';
 import AddSeller from './AddSeller';
+import BookList from './BookList';
 
 
 const Main = () => (
@@ -15,6 +16,7 @@ const Main = () => (
       <Route exact path='/adminmenu/addBook' component={AddBook}></Route>
       <Route exact path='/adminmenu/addAdmin' component={AddAdmin}></Route>
       <Route exact path='/adminmenu/addSeller' component={AddSeller}></Route>
+      <Route exact path='/adminmenu/allBooks' component={BookList}></Route>
     </Switch>
   );
 

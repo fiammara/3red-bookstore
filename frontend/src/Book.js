@@ -13,7 +13,7 @@ class Book extends Component {
                 <td>{this.props.book.photoPath}</td>
             </tr>
             <tr>
-                <td>{this.props.book.title}</td>
+                <td><h3>{this.props.book.title}</h3></td>
             </tr>
             <tr>
                 <td>{this.props.book.year}</td>
@@ -22,7 +22,7 @@ class Book extends Component {
                 <td>{this.props.book.isbn}</td>
             </tr>
             <tr>
-                <td>{this.props.book.price}</td>
+                <td><strong>{this.props.book.price}</strong></td>
             </tr>
             </div>
         );
