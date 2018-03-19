@@ -1,10 +1,9 @@
-package lt.vtvpmc.threered.bookstore.service;
+package lt.vtvpmc.threered.bookstore.book;
 
 import java.util.List;
 
-import lt.vtvpmc.threered.bookstore.model.Author;
-import lt.vtvpmc.threered.bookstore.model.Book;
-import lt.vtvpmc.threered.bookstore.model.Category;
+import lt.vtvpmc.threered.bookstore.author.Author;
+import lt.vtvpmc.threered.bookstore.category.Category;
 
 public interface BookStoreService {
 	void addBook(Book book);

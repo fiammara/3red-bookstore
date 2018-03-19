@@ -1,4 +1,4 @@
-package lt.vtvpmc.threered.bookstore.service;
+package lt.vtvpmc.threered.bookstore.book;
 
 import java.util.List;
 
@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lt.vtvpmc.threered.bookstore.model.Author;
-import lt.vtvpmc.threered.bookstore.model.Book;
-import lt.vtvpmc.threered.bookstore.model.Category;
-import lt.vtvpmc.threered.bookstore.repository.AuthorRepository;
-import lt.vtvpmc.threered.bookstore.repository.BookRepository;
-import lt.vtvpmc.threered.bookstore.repository.CategoryRepository;
+import lt.vtvpmc.threered.bookstore.author.Author;
+import lt.vtvpmc.threered.bookstore.author.AuthorRepository;
+import lt.vtvpmc.threered.bookstore.category.Category;
+import lt.vtvpmc.threered.bookstore.category.CategoryRepository;
 
 @Service
 public class BookStoreServiceImpl implements BookStoreService {

@@ -1,13 +1,10 @@
-package lt.vtvpmc.threered.bookstore.validator;
+package lt.vtvpmc.threered.bookstore.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
-import lt.vtvpmc.threered.bookstore.model.User;
-import lt.vtvpmc.threered.bookstore.service.UserService;
 
 
 

@@ -1,8 +1,6 @@
-package lt.vtvpmc.threered.bookstore.repository;
+package lt.vtvpmc.threered.bookstore.role;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import lt.vtvpmc.threered.bookstore.model.Role;
 
 
 

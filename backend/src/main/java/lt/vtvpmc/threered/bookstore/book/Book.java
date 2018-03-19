@@ -1,4 +1,4 @@
-package lt.vtvpmc.threered.bookstore.model;
+package lt.vtvpmc.threered.bookstore.book;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -15,6 +15,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
+
+import lt.vtvpmc.threered.bookstore.author.Author;
+import lt.vtvpmc.threered.bookstore.category.Category;
 
 @Entity
 @Table(name = "book")

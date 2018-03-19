@@ -1,8 +1,6 @@
-package lt.vtvpmc.threered.bookstore.repository;
+package lt.vtvpmc.threered.bookstore.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import lt.vtvpmc.threered.bookstore.model.User;
 
 
 

@@ -1,4 +1,4 @@
-package lt.vtvpmc.threered.bookstore.service;
+package lt.vtvpmc.threered.bookstore.security;
 
 
 

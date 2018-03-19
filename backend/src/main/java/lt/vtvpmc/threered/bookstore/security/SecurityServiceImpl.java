@@ -1,4 +1,4 @@
-package lt.vtvpmc.threered.bookstore.service;
+package lt.vtvpmc.threered.bookstore.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

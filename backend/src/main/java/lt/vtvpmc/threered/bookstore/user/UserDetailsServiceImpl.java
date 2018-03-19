@@ -1,4 +1,4 @@
-package lt.vtvpmc.threered.bookstore.service;
+package lt.vtvpmc.threered.bookstore.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,9 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lt.vtvpmc.threered.bookstore.model.Role;
-import lt.vtvpmc.threered.bookstore.model.User;
-import lt.vtvpmc.threered.bookstore.repository.UserRepository;
+import lt.vtvpmc.threered.bookstore.role.Role;
 
 import java.util.HashSet;
 import java.util.Set;
