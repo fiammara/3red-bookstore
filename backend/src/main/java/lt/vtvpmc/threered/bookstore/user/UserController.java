@@ -1,4 +1,4 @@
-package lt.vtvpmc.threered.bookstore.controllers;
+package lt.vtvpmc.threered.bookstore.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import lt.vtvpmc.threered.bookstore.model.User;
-import lt.vtvpmc.threered.bookstore.service.SecurityService;
-import lt.vtvpmc.threered.bookstore.service.UserService;
-import lt.vtvpmc.threered.bookstore.validator.UserValidator;
+import lt.vtvpmc.threered.bookstore.security.SecurityService;
 
 
 @Controller

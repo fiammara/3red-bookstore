@@ -1,4 +1,4 @@
-package lt.vtvpmc.threered.bookstore.controllers;
+package lt.vtvpmc.threered.bookstore.book;
 
 import java.util.List;
 
@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lt.vtvpmc.threered.bookstore.model.Author;
-import lt.vtvpmc.threered.bookstore.model.Book;
-import lt.vtvpmc.threered.bookstore.model.Category;
-import lt.vtvpmc.threered.bookstore.service.BookStoreService;
 
 @CrossOrigin
 @RestController

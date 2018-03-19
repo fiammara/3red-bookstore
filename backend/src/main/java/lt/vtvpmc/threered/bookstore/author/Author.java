@@ -1,4 +1,4 @@
-package lt.vtvpmc.threered.bookstore.model;
+package lt.vtvpmc.threered.bookstore.author;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lt.vtvpmc.threered.bookstore.book.Book;
 
 @Entity
 @Table(name = "author")

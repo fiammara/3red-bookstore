@@ -1,8 +1,10 @@
-package lt.vtvpmc.threered.bookstore.model;
+package lt.vtvpmc.threered.bookstore.role;
 
 import java.util.Set;
 
 import javax.persistence.*;
+
+import lt.vtvpmc.threered.bookstore.user.User;
 
 
 @Entity

@@ -1,4 +1,4 @@
-package lt.vtvpmc.threered.bookstore.model;
+package lt.vtvpmc.threered.bookstore.category;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,6 +1,4 @@
-package lt.vtvpmc.threered.bookstore.service;
-
-import lt.vtvpmc.threered.bookstore.model.User;
+package lt.vtvpmc.threered.bookstore.user;
 
 public interface UserService {
     void save(User user);
