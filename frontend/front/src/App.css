@@ -8,19 +8,24 @@ html {
   margin: 0;
 }
 
-.menuHeader {
+.menuHeader ul {
   list-style: none;
   display: flex;
   background-color: grey;
   margin: 0 auto;
 }
 
-nav ul li {
+.menuHeader ul li {
   padding: 20px;
   display: block;
 }
 
-nav ul li a {
+.menuHeader ul li a {
   color: white;
   text-decoration: none;
+}
+
+.main{
+  padding-left: 20px;
+  padding-top: 20px;
 }

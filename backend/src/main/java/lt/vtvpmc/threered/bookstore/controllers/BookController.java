@@ -1,7 +1,8 @@
 package lt.vtvpmc.threered.bookstore.controllers;
 
 import java.util.List;
-import java.util.Set;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,8 +34,8 @@ public class BookController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ApiOperation(value = "Add book", notes = "Adds new book to the BookStore")
-	public void addBook(@ApiParam  @RequestBody Set<Category> categories, @ApiParam  @RequestBody Set<Author> authors, @ApiParam @RequestBody Book book) {
-		service.addBook(categories, authors, book);
+	public void addBook(@ApiParam @RequestBody @Valid Book book) {
+		service.addBook(book);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

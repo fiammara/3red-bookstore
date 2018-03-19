@@ -11,7 +11,7 @@ import AddSeller from './AddSeller';
 const Main = () => (
     <Switch>
       <Route exact path='/login' component={Login}></Route>
-      <Route exact path='/adminmenu' component={AdminMenu}></Route>
+      {/* <Route exact path='/adminmenu' component={AdminMenu}></Route> */}
       <Route exact path='/adminmenu/addBook' component={AddBook}></Route>
       <Route exact path='/adminmenu/addAdmin' component={AddAdmin}></Route>
       <Route exact path='/adminmenu/addSeller' component={AddSeller}></Route>
