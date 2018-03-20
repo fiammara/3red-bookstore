@@ -1,21 +1,35 @@
 package lt.vtvpmc.threered.bookstore.role;
 
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lt.vtvpmc.threered.bookstore.user.User;
 
 
 @Entity
-@Table(name = "roles")
 public class Role {
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	 private Long id;
 	    private String name;
-	    private Set<User> users;
+	    @ManyToMany(mappedBy = "roles")
+	    private List<User> users;
+	    
+	    public Role() {
+	    	
+	    }
+	    public Role(String name) {
+	    	
+	    }
 
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
+	    
 	    public Long getId() {
 	        return id;
 	    }
@@ -32,12 +46,12 @@ public class Role {
 	        this.name = name;
 	    }
 
-	    @ManyToMany(mappedBy = "roles")
-	    public Set<User> getUsers() {
+	   @JsonIgnore
+	    public List<User> getUsers() {
 	        return users;
 	    }
 
-	    public void setUsers(Set<User> users) {
+	    public void setUsers(List<User> users) {
 	        this.users = users;
 	    }
 	}

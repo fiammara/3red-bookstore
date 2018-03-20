@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 
 
 
-@Component
+//@Component
 public class UserValidator implements Validator {
     @Autowired
     private UserService userService;

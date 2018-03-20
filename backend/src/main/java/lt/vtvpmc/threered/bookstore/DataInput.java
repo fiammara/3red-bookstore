@@ -12,22 +12,15 @@ import lt.vtvpmc.threered.bookstore.author.Author;
 import lt.vtvpmc.threered.bookstore.book.Book;
 import lt.vtvpmc.threered.bookstore.book.BookStoreService;
 import lt.vtvpmc.threered.bookstore.category.Category;
-import lt.vtvpmc.threered.bookstore.role.Role;
-import lt.vtvpmc.threered.bookstore.user.User;
-import lt.vtvpmc.threered.bookstore.user.UserService;
 
 @Component
 public class DataInput implements CommandLineRunner {
 	private BookStoreService bookService;
-	
-	
-	
+
 	@Autowired
 	public DataInput(BookStoreService bookService) {
 		this.bookService = bookService;
-		
-		
-		
+
 	}
 
 	@Override
@@ -38,27 +31,25 @@ public class DataInput implements CommandLineRunner {
 		Author oliver2 = new Author("Jamie", "Oliver");
 		Set<Author> authors2 = new HashSet<Author>();
 		authors2.add(oliver2);
-		
-		
+
 		Category cuisine = new Category("cuisine");
 		Category drama = new Category("drama");
 		Set<Category> categories = new HashSet<Category>();
 		categories.add(cuisine);
 		categories.add(drama);
-	
+
 		Category cuisine2 = new Category("cuisine");
 		Category detective = new Category("detective");
 		Set<Category> categories2 = new HashSet<Category>();
 		categories2.add(cuisine2);
 		categories2.add(detective);
-		
-		
-		
-		Book cooking = new Book(categories, "https://book", "Cooking", authors, "2016", "9781401301958", new BigDecimal("20"), "Cooking book", 4, true);
+
+		Book cooking = new Book(categories, "https://book", "Cooking", authors, "2016", "9781401301958",
+				new BigDecimal("20"), "Cooking book", 4, true);
 		bookService.addBook(cooking);
-		Book cooking2 = new Book(categories2, "https://book", "Cooking", authors, "2016", "9781250146250", new BigDecimal("20"), "Cooking book", 4, true);
+		Book cooking2 = new Book(categories2, "https://book", "Cooking", authors, "2016", "9781250146250",
+				new BigDecimal("20"), "Cooking book", 4, true);
 		bookService.addBook(cooking2);
-		
 		
 
 	}
