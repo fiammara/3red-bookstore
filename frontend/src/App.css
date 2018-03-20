@@ -1,0 +1,31 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.menuHeader ul {
+  list-style: none;
+  display: flex;
+  background-color: grey;
+  margin: 0 auto;
+}
+
+.menuHeader ul li {
+  padding: 20px;
+  display: block;
+}
+
+.menuHeader ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.main{
+  padding-left: 20px;
+  padding-top: 20px;
+}
