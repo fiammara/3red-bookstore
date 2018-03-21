@@ -14,7 +14,7 @@ import lt.vtvpmc.threered.bookstore.role.Role;
 import java.util.HashSet;
 import java.util.Set;
 
-@Service
+//@Service
 public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
     private UserRepository userRepository;
