@@ -22,12 +22,10 @@ class BookList extends Component {
 
         return<table>
             <thead>
-                <tr>
-                <th> Book </th>
-                </tr>
+                 <h1> Visos knygos </h1>
             </thead>
-            <tbody>
-            {bookList}
+            <tbody class="listOfBooks">
+                {bookList}
             </tbody> 
         </table>
     }

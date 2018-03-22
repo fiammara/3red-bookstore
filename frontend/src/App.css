@@ -29,3 +29,14 @@ html {
   padding-left: 20px;
   padding-top: 20px;
 }
+
+.bookTitle{
+  color: green;
+}
+
+.listOfBooks {
+  box-sizing: border-box;
+  display: flex;
+  padding: 20px;
+  text-align: left;
+}
