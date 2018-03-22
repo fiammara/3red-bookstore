@@ -52,7 +52,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 	@Transactional
 	@Override
 	public void addAuthor(Author author) {
-		Author existant = authorRepo.findAuthoryByFirstNameAndLastName(author.getFirstName(), author.getLastName());
+		Author existant = authorRepo.findAuthorByFirstNameAndLastName(author.getFirstName(), author.getLastName());
 		if (existant == null) {
 			authorRepo.save(author);
 		} else {
@@ -83,6 +83,12 @@ public class BookStoreServiceImpl implements BookStoreService {
 	@Override
 	public List<Category> getAllCategories() {
 		return categoryRepo.findAll();
+	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Author findAuthorByBook(Long bookId) {
+		return authorRepo.findAuthorByBook(bookId);
 	}
 
 }

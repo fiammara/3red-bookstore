@@ -20,14 +20,12 @@ class BookList extends Component {
             return <Book key = {book.id} book = {book}/>
         })
 
-        return<table>
-            <thead>
+        return(<div>
                  <h1> Visos knygos </h1>
-            </thead>
-            <tbody class="listOfBooks">
+            <div className="listOfBooks">
                 {bookList}
-            </tbody> 
-        </table>
+            </div> 
+        </div>)
     }
 }
 export default BookList;

@@ -70,8 +70,8 @@ class AddBook extends Component {
       "photoPath": "http://book1",
       "price": this.state.price,
       "title": this.state.title,
-      "year": this.state.year,
-      "available": true
+      "year": this.state.year
+
     }
 
     axios.post('http://localhost:8080/api/books', newBook);
