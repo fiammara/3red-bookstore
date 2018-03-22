@@ -9,21 +9,13 @@ class Book extends Component {
     render() {
         return(
             <div>
-            <tr>
-                <td>{this.props.book.photoPath}</td>
-            </tr>
-            <tr>
-                <td><h3>{this.props.book.title}</h3></td>
-            </tr>
-            <tr>
-                <td>{this.props.book.year}</td>
-            </tr>
-            <tr>
-                <td>{this.props.book.isbn}</td>
-            </tr>
-            <tr>
-                <td><strong>{this.props.book.price}</strong></td>
-            </tr>
+                <img src={"http://ma-secretariat.org/wp-content/uploads/2017/12/shopkins-cutie-cars-coloring-pages-black-and-white-collections-10-200x150.png"} 
+                alt="{this.props.book.photoPath}"/>
+                <h3 className="bookTitle">{this.props.book.title}</h3>
+                {/* <p> Autorius: {this.props.author.firstname} </p> */}
+                <p> {this.props.book.year} m.</p>
+                <p> ISBN: {this.props.book.isbn} </p>
+                <p><strong> Kaina: </strong> {this.props.book.price} EUR </p> <br/>
             </div>
         );
     }
