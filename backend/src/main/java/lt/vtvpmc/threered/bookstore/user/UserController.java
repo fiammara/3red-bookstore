@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @RequestMapping(value = "api/users")
 @Api(value = "user")
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
@@ -33,13 +35,18 @@ public class UserController {
     	return userService.getAllUsers();
     }
 
-    @RequestMapping(path = "/registration", method = RequestMethod.POST)
-    public void addUser(@ApiParam @RequestBody @Valid User user) {
+    @RequestMapping(path = "/newAdmin", method = RequestMethod.POST)
+    public void addAdmin(@ApiParam @RequestBody @Valid Administrator user) {
+    	userService.save(user);
+    }
+    
+    @RequestMapping(path = "/newSeller", method = RequestMethod.POST)
+    public void addSeller(@ApiParam @RequestBody @Valid Seller user) {
     	userService.save(user);
     }
     
     @RequestMapping(path = "/{username}", method = RequestMethod.DELETE)
-    public void addUser(@PathVariable String username) {
+    public void deleteUser(@PathVariable String username) {
     	userService.deleteUser(username);
     }
 }
