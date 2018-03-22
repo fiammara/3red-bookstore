@@ -15,6 +15,7 @@ public interface BookStoreService {
 	void addCategory(Category category);
 	List<Category> getAllCategories();
 	
+	Author findAuthorByBook(Long bookId);
 	
 	
 }
