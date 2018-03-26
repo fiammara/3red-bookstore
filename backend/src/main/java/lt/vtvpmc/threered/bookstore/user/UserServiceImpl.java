@@ -21,28 +21,54 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-    public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        for (Role r : user.getRoles()) {
-			this.addRole(r);
-        }
-        userRepository.save(user);
-    }
-	
+	public void addUser(UserCreate user)  {
+		if (this.findByUsername(user.getUsername()) != null) {
+			throw new IllegalArgumentException("Such username already exists");
+		} else {
+			switch (user.getUserType()) {
+			case ADMIN:
+				Administrator admin = new Administrator();
+				admin.setFirstName(user.getFirstName());
+				admin.setLastName(user.getLastName());
+				admin.setPhoneNo(user.getPhoneNo());
+				admin.setEmail(user.getEmail());
+				admin.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+				admin.setUsername(user.getUsername());
+				admin.setRole(this.findRoleByName("Admin"));
+				userRepository.save(admin);
+				break;
+			case SELLER:
+				Seller seller = new Seller();
+				seller.setFirstName(user.getFirstName());
+				seller.setLastName(user.getLastName());
+				seller.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+				seller.setPhoneNo(user.getPhoneNo());
+				seller.setEmail(user.getEmail());
+				seller.setUsername(user.getUsername());
+				seller.setRole(this.findRoleByName("Seller"));
+				userRepository.save(seller);
+				break;
+			}
+
+		}
+
+	}
+
 	@Transactional
 	@Override
-	public List<User> getAllUsers(){
+	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
+
 	@Transactional
 	@Override
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
-	
+
 	@Transactional
 	@Override
-    public void deleteUser(String username) {
+	public void deleteUser(String username) {
 		userRepository.delete(userRepository.findByUsername(username));
 	}
 
@@ -56,5 +82,10 @@ public class UserServiceImpl implements UserService {
 			role.setId(existant.getId());
 			roleRepository.save(role);
 		}
+	}
+	@Transactional
+	@Override
+	public Role findRoleByName(String name) {
+		return roleRepository.findRoleByName(name);
 	}
 }

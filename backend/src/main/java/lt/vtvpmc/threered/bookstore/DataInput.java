@@ -12,19 +12,27 @@ import lt.vtvpmc.threered.bookstore.author.Author;
 import lt.vtvpmc.threered.bookstore.book.Book;
 import lt.vtvpmc.threered.bookstore.book.BookStoreService;
 import lt.vtvpmc.threered.bookstore.category.Category;
+import lt.vtvpmc.threered.bookstore.role.Role;
+import lt.vtvpmc.threered.bookstore.role.RoleRepository;
 
 @Component
 public class DataInput implements CommandLineRunner {
-	private BookStoreService bookService;
-
 	@Autowired
-	public DataInput(BookStoreService bookService) {
-		this.bookService = bookService;
-
-	}
+	private BookStoreService bookService;
+	@Autowired
+	private RoleRepository roleRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		//Initial role set up
+		Role adminRole = new Role("Admin");
+		roleRepo.save(adminRole);
+		Role sellerRole = new Role("Seller");
+		roleRepo.save(sellerRole);
+		
+		//End of role set up
+		
 		Author oliver = new Author("Jamie", "Oliver");
 		Set<Author> authors = new HashSet<Author>();
 		authors.add(oliver);

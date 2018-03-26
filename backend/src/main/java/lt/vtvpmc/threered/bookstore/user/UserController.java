@@ -15,38 +15,32 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 
-
 @RestController
 @RequestMapping(value = "api/users")
 @Api(value = "user")
 @CrossOrigin
 public class UserController {
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-//    @Autowired
-//    private SecurityService securityService;
-//
-//    @Autowired
-//    private UserValidator userValidator;
-    
-    @RequestMapping(method = RequestMethod.GET)
-    public List<User> getAllUsers() {
-    	return userService.getAllUsers();
-    }
+	// @Autowired
+	// private SecurityService securityService;
+	//
+	// @Autowired
+	// private UserValidator userValidator;
 
-    @RequestMapping(path = "/newAdmin", method = RequestMethod.POST)
-    public void addAdmin(@ApiParam @RequestBody @Valid Administrator user) {
-    	userService.save(user);
-    }
-    
-    @RequestMapping(path = "/newSeller", method = RequestMethod.POST)
-    public void addSeller(@ApiParam @RequestBody @Valid Seller user) {
-    	userService.save(user);
-    }
-    
-    @RequestMapping(path = "/{username}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable String username) {
-    	userService.deleteUser(username);
-    }
+	@RequestMapping(method = RequestMethod.GET)
+	public List<User> getAllUsers() {
+		return userService.getAllUsers();
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public void addAdmin(@ApiParam @RequestBody @Valid UserCreate user) {
+		userService.addUser(user);
+	}
+
+	@RequestMapping(path = "/{username}", method = RequestMethod.DELETE)
+	public void deleteUser(@PathVariable String username) {
+		userService.deleteUser(username);
+	}
 }
