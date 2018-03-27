@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -24,9 +25,10 @@ public abstract class User {
 	@Id
 	private Long id;
 	@NotNull
+	@Length(max = 40)
 	private String username;
 	@NotNull
-	@Length(min = 8)
+	@Length(min = 8, max = 30)
 	private String password;
 //	@NotNull
 	@Transient
@@ -34,10 +36,13 @@ public abstract class User {
 	@ManyToOne
 	private Role role;
 	@NotNull
+	@Length(min = 2, max = 30)
 	private String firstName;
 	@NotNull
+	@Length(min = 2, max = 40)
 	private String lastName;
 	@NotNull
+	@Pattern(regexp = "^\\+?(\\d+)")
 	private String phoneNo;
 
 	public Long getId() {

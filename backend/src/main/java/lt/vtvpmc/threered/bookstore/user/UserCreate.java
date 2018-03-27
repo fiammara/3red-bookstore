@@ -1,4 +1,4 @@
-package lt.vtvpmc.threered.bookstore.user;
+ package lt.vtvpmc.threered.bookstore.user;
 
 import javax.validation.constraints.NotNull;
 
