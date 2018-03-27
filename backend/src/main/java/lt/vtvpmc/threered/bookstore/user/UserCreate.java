@@ -1,51 +1,32 @@
 package lt.vtvpmc.threered.bookstore.user;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import lt.vtvpmc.threered.bookstore.role.Role;
-
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class User {
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Id
-	private Long id;
+public class UserCreate {
+	private UserType userType;
 	@NotNull
 	private String username;
 	@NotNull
 	@Length(min = 8)
 	private String password;
-//	@NotNull
-	@Transient
+	@NotNull
 	private String passwordConfirm;
-	@ManyToOne
-	private Role role;
 	@NotNull
 	private String firstName;
 	@NotNull
 	private String lastName;
 	@NotNull
 	private String phoneNo;
+	private String email;
 
-	public Long getId() {
-		return id;
+	public UserType getUserType() {
+		return userType;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
 	public String getUsername() {
@@ -72,14 +53,6 @@ public abstract class User {
 		this.passwordConfirm = passwordConfirm;
 	}
 
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -102,6 +75,14 @@ public abstract class User {
 
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

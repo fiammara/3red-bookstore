@@ -23,6 +23,7 @@ class AddAdmin extends Component {
         event.preventDefault();
 
         const newAdmin = {
+          "userType": 'ADMIN',
           "firstName": this.state.fname,
           "lastName": this.state.lname,
           "email": this.state.email,
@@ -31,7 +32,7 @@ class AddAdmin extends Component {
           "password": this.state.password,
           "passwordConfirm": this.state.passwordConfirm
         }
-        axios.post('http://localhost:8080/api/users/newAdmin', newAdmin);
+        axios.post('http://localhost:8080/api/users', newAdmin);
         console.log(newAdmin);
 
         this.setState({
@@ -63,7 +64,7 @@ class AddAdmin extends Component {
               <input name="password" type="password" onChange={this.handleChangeFor("password")} value={this.state.password} /><br />
               <label>Pakartokite slaptažodį</label><br />
               <input name="passwordConfirm" type="password"  onChange={this.handleChangeFor("passwordConfirm")} value={this.state.passwordConfirm} /><br />
-              <button onClick={this.addAdmin}>Submit</button>
+              <button onClick={this.addAdmin}>Išsaugoti</button>
             </form>
           </div>
         );
