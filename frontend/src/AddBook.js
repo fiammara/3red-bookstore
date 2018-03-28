@@ -74,7 +74,27 @@ class AddBook extends Component {
 
     }
 
-    axios.post('http://localhost:8080/api/books', newBook);
+    axios.post('http://localhost:8080/api/books', newBook).then(function(response){
+        alert("saved successfully");
+    console.log('saved successfully');
+        console.log(response)
+  }).catch(error => {
+
+        if (error.response.status == 400){
+            alert("Bad fields, not under hints, pleace change fields and try again");
+          
+        console.log( "ziurim zinute 1", error.response.data);
+             
+        }
+        else if (error.response.status == 500){
+            alert("Book already exist with similar fields, change it, and try again");
+            console.log( "ziurim zinute 2", error.response.data);
+        }
+        else{alert("something wrog to connecting, pleace try again");
+            console.log( "ziurim zinute 2", error.response.data);
+            }
+
+});
     console.log(newBook);
     
 }
