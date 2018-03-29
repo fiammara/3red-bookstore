@@ -21,6 +21,9 @@ public class UserCreate {
 	private String phoneNo;
 	private String email;
 
+	
+
+
 	public UserType getUserType() {
 		return userType;
 	}

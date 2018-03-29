@@ -1,7 +1,10 @@
 package lt.vtvpmc.threered.bookstore.user;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,6 +12,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -39,6 +43,21 @@ public abstract class User {
 	private String lastName;
 	@NotNull
 	private String phoneNo;
+	
+    //@NotNull
+    private String email;
+   
+  // @NotNull
+    private Boolean enabled;
+
+ 
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USER_AUTHORITY",
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
+private List<Authority> authorities;
 
 	public Long getId() {
 		return id;
@@ -103,5 +122,31 @@ public abstract class User {
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
+	
+	 public String getEmail() {
+	        return email;
+	    }
+
+	    public void setEmail(String email) {
+	        this.email = email;
+	}
+	    public List<Authority> getAuthorities() {
+	        return authorities;
+	    }
+
+	    public void setAuthorities(List<Authority> authorities) {
+	        this.authorities = authorities;
+	}
+	  public Boolean getEnabled() {
+	       return enabled;
+	  }
+
+	   public void setEnabled(Boolean enabled) {
+	        this.enabled = enabled;
+	   }
+
+	   
+
+	    
 
 }
