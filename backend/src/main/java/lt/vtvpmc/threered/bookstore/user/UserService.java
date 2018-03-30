@@ -8,13 +8,9 @@ public interface UserService {
 
 	User findById(long id);
 
-	
-
 	void deleteUserById(long id);
 
 	//boolean isUserExist(User user);
-
-
 
 	void addUser(UserCreate user);
 

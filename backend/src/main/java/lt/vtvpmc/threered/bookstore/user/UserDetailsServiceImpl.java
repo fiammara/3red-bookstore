@@ -4,7 +4,7 @@ package lt.vtvpmc.threered.bookstore.user;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,8 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import lt.vtvpmc.threered.bookstore.role.Role;
-import lt.vtvpmc.threered.bookstore.role.RoleRepository;
+
 import lt.vtvpmc.threered.bookstore.user.User;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -38,7 +37,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
-
    
 }
 

@@ -30,7 +30,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE,
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<User> getUser(@PathVariable("id") long id) {
 		System.out.println("Fetching User with id " + id);
@@ -47,22 +47,6 @@ public class UserController {
 		userService.addUser(user);
 	}
 
-	
-	// @Autowired
-	// private SecurityService securityService;
-	//
-	// @Autowired
-	// private UserValidator userValidator;
-
-	// @RequestMapping(method = RequestMethod.GET)
-	// public List<User> getAllUsers() {
-	// return userService.getAllUsers();
-	// }
-
-	// @RequestMapping(method = RequestMethod.POST)
-	// public void addAdmin(@ApiParam @RequestBody @Valid UserCreate user) {
-	// userService.addUser(user);
-	/// }
 
 	// @RequestMapping(path = "/{username}", method = RequestMethod.DELETE)
 	// public void deleteUser(@PathVariable String username) {
