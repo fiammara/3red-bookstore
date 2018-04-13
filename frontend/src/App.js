@@ -22,13 +22,16 @@ class App extends Component {
         <div>
           <Sidebar/>
           </div>
+         
         <div className='main'>
           <Main />
         </div>
         <div>
           <Footerb/>
           </div>
+        
       </div>
+      
       
     );
   }

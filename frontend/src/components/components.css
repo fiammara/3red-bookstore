@@ -1,6 +1,6 @@
 .Navbar{
 
-    height: 900px;
+    height: 700px;
     width: 15%;
     float: left;
     border-radius: 0%;
@@ -8,14 +8,17 @@
     
     }
     .navbartop{
-     position: absolute;   
+     position: bottom;   
      left:80px;
      width:96%;
      height:-10px; 
     }
     .footer{
-    background:rgb(1, 1, 17);
     
+    background:rgb(1, 1, 17);
+    height: 75px;
+    clear: both;
+   
     }
     
     .navmenu ul {
@@ -24,6 +27,7 @@
         list-style-type: none;
         padding: 0;
         margin: 0;
+        
     }
     
     .navmenu ul li a {
