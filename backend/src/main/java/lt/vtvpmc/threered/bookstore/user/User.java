@@ -40,13 +40,13 @@ public abstract class User {
 	@ManyToOne
 	private Role role;
 	@NotNull
-	@Length(min = 2, max = 30)
+	//@Length(min = 2, max = 30)
 	private String firstName;
 	@NotNull
 	@Length(min = 2, max = 40)
 	private String lastName;
 	@NotNull
-	@Pattern(regexp = "^\\+?(\\d+)")
+	//@Pattern(regexp = "^\\+?(\\d+)")
 	private String phoneNo;
 	
     //@NotNull
