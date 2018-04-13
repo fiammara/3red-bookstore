@@ -28,9 +28,6 @@ class App extends Component {
         <div>
           <Footerb/>
           </div>
-        <div className='books'>
-          <BookList /> 
-        </div>
       </div>
       
     );
