@@ -26,6 +26,8 @@ html {
 }
 
 .main{
+  position: relative;
+  left:0px;
   padding-left: 20px;
   padding-top: 20px;
 }
