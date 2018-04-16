@@ -6,105 +6,86 @@ import axios from 'axios';
 class User extends Component {
     constructor(props) {
         super(props);
-        this.state = 
-        {display: true,
-        mode:'view',
-      fname: '',
-      lname: '',
-      email: '',
-      phone: '',
-      username: '',
-      password: '',
-      passwordConfirm: '',
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSave = this.handleSave.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);  
-    }
-  handleChangeFor = (propertyName) => (event) => {
-      this.setState({ [propertyName]: event.target.value });
-     
-    }
-    handleChange(e) {
-        this.setState({ inputText: e.target.value });
-      }
-      
-      handleSave() {
-        this.setState({text: this.state.inputText, mode: 'view'});
-      }
-    
-      handleEdit= event =>  {
-        this.setState({mode: 'edit'});
-    }
+        this.state =
+            {
+                display: true,
+                mode: 'view',
+                fname: this.props.user.username,
+                lname: this.props.user.lastName,
+                email: this.props.user.email,
+                phone: this.props.user.phoneNo,
+                username: this.props.user.username,
+                password: this.props.user.password,
+                passwordConfirm: this.props.user.password,
+            };
 
-    handleSave= event =>  {
-        this.setState({mode: 'view'});
+        this.handleEdit = this.handleEdit.bind(this);
     }
-    
+    handleChangeFor = (propertyName) => (event) => {
+        this.setState({ [propertyName]: event.target.value });
+    }
+    handleEdit = event => {
+        this.setState({ mode: 'edit' });
+    }
     addAdmin = event => {
-        this.setState({mode: 'view'});
+        this.setState({ mode: 'view' });
         event.preventDefault();
-      
+
         const newAdmin = {
 
             "userType": 'ADMIN',
-          "firstName": this.state.fname,
-          "lastName": this.state.lname,
-          "email": this.state.email,
-          "phoneNo": this.state.phone,
-          "username": this.state.username,
-          "password": 'passwords1',
-          "passwordConfirm": 'passwords1'     
+            "firstName": this.state.fname,
+            "lastName": this.state.lname,
+            "email": this.state.email,
+            "phoneNo": this.state.phone,
+            "username": this.state.username,
+            "password": this.state.password,
+            "passwordConfirm": this.state.password
         }
-       
+
         axios.delete('http://localhost:8080/api/users/' + this.props.user.id).then(console.log('ištryniau'))
         axios.post('http://localhost:8080/api/users', newAdmin);
-        this.setState({mode: 'view'});
+        this.setState({ mode: 'view' });
     }
 
     deleteUser = (id) => {
-        
-      axios.delete('http://localhost:8080/api/users/' + id).then(console.log('ištryniau'))
-      this.setState({ display: false })
+
+        axios.delete('http://localhost:8080/api/users/' + id).then(console.log('ištryniau'))
+        this.setState({ display: false })
     }
     render() {
-        if(this.state.mode === 'view') {
-       
-             return(
-            <div>
+        if (this.state.mode === 'view') {
 
-            <tr>               
-            <td>{this.props.user.id}</td>
-            <td>{this.props.user.username}</td>
-            <td>{this.props.user.firstName}</td>
-            <td>{this.props.user.lastName}</td>
- 
+            return (
+                <div>
+                    <tr>
+                        <td>{this.props.user.id}</td>
+                        <td>{this.props.user.username}</td>
+                        <td>{this.props.user.firstName}</td>
+                        <td>{this.props.user.lastName}</td>
+                        <td className="button1"><button onClick={() =>
+                            this.deleteUser(this.props.user.id)}>Ištrinti </button></td>
+                        <td className="button2"><button onClick={this.handleEdit}>Redaguoti</button></td>
+                    </tr>
+                </div>
 
-            <td className = "button1"><button onClick={() => 
-            this.deleteUser(this.props.user.id)}>Ištrinti </button></td>
-            <td className = "button2"><button onClick= {this.handleEdit}>
-           Redaguoti</button></td>
-            </tr> 
-            </div>          
-           
-        );
-        
-    }
+            );
+        }
 
         else {
             return (
-                <div>          
+                <div>
                     <tr>
-                    <td><input type="text" size="5"  defaultValue={this.props.user.id} /></td>
-                    <td><input type="text" size="30" defaultValue={this.props.user.username} onChange={this.handleChangeFor("username")}/></td>
-                    <td><input type="text" size="30" defaultValue={this.props.user.firstName} onChange={this.handleChangeFor("fname")}/></td>
-                    <td><input type="text" size="30" defaultValue={this.props.user.lastName} onChange={this.handleChangeFor("lname")}/></td>
-            
-                    <td className = "button3"><button onClick= 
-    {this.addAdmin}>Išsaugoti</button></td><td>6</td></tr>
-      
-               </div>
-               )
+                        <td><input type="text" size="5" defaultValue={this.props.user.id} /></td>
+                        <td><input type="text" size="30" defaultValue={this.props.user.username} onChange={this.handleChangeFor("username")} /></td>
+                        <td><input type="text" size="30" defaultValue={this.props.user.firstName} onChange={this.handleChangeFor("fname")} /></td>
+                        <td><input type="text" size="30" defaultValue={this.props.user.lastName} onChange={this.handleChangeFor("lname")} /></td>
+
+                        <td className="button3"><button onClick=
+                            {this.addAdmin}>Išsaugoti</button></td><td>6</td></tr>
+
+                </div>
+            )
         }
     }
 }
