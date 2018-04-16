@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lt.vtvpmc.threered.bookstore.book.BookStoreService;
+import lt.vtvpmc.threered.bookstore.db.DBService;
 
 @RestController
 @Api(value = "category")
 @RequestMapping(value = "api/categories")
 public class CategoryController {
-	private BookStoreService service;
+	private DBService service;
 	
 	@Autowired
-	public CategoryController(BookStoreService service) {
+	public CategoryController(DBService service) {
 		this.service = service;
 	}
 	

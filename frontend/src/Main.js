@@ -15,13 +15,14 @@ import BookList from './BookList';
 
 const Main = () => (
     <Switch>
-      <Route exact path='/login' component={Login}></Route>
-      <Route exact path='/signup' component={SignUp}></Route>
-      {/* <Route exact path='/adminmenu' component={AdminMenu}></Route> */}
-      <Route exact path='/adminmenu/addBook' component={AddBook}></Route>
-      <Route exact path='/adminmenu/addAdmin' component={AddAdmin}></Route>
-      <Route exact path='/adminmenu/addSeller' component={AddSeller}></Route>
-      <Route exact path='/adminmenu/allBooks' component={BookList}></Route>
+        <Route exact path='/login' component={Login}></Route>
+        <Route exact path='/signup' component={SignUp}></Route>
+        {/* <Route exact path='/adminmenu' component={AdminMenu}></Route> */}
+        <Route exact path='/adminmenu/addBook/' component={AddBook}></Route>
+        <Route exact path='/adminmenu/addBook/:id' component={AddBook}></Route>
+        <Route exact path='/adminmenu/addAdmin' component={AddAdmin}></Route>
+        <Route exact path='/adminmenu/addSeller' component={AddSeller}></Route>
+        <Route exact path='/adminmenu/allBooks/' component={BookList}></Route>
     </Switch>
   );
 

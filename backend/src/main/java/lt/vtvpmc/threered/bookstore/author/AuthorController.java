@@ -14,17 +14,17 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lt.vtvpmc.threered.bookstore.book.Book;
-import lt.vtvpmc.threered.bookstore.book.BookStoreService;
+import lt.vtvpmc.threered.bookstore.db.DBService;
 
 @RestController
 @Api(value = "author")
 @RequestMapping(value = "/api/authors")
 @CrossOrigin
 public class AuthorController {
-	private BookStoreService service;
+	private DBService service;
 
 	@Autowired
-	public AuthorController(BookStoreService service) {
+	public AuthorController(DBService service) {
 		this.service = service;
 	}
 	

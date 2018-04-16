@@ -1,6 +1,7 @@
-package lt.vtvpmc.threered.bookstore.book;
+package lt.vtvpmc.threered.bookstore.db;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,17 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lt.vtvpmc.threered.bookstore.author.Author;
 import lt.vtvpmc.threered.bookstore.author.AuthorRepository;
+import lt.vtvpmc.threered.bookstore.book.Book;
+import lt.vtvpmc.threered.bookstore.book.BookRepository;
 import lt.vtvpmc.threered.bookstore.category.Category;
 import lt.vtvpmc.threered.bookstore.category.CategoryRepository;
 
 @Service
-public class BookStoreServiceImpl implements BookStoreService {
+public class DBServiceImpl implements DBService {
 	private BookRepository bookRepo;
 	private AuthorRepository authorRepo;
 	private CategoryRepository categoryRepo;
 
 	@Autowired
-	public BookStoreServiceImpl(BookRepository bookRepo, AuthorRepository authorRepo, CategoryRepository categoryRepo) {
+	public DBServiceImpl(BookRepository bookRepo, AuthorRepository authorRepo, CategoryRepository categoryRepo) {
 		this.bookRepo = bookRepo;
 		this.authorRepo = authorRepo;
 		this.categoryRepo = categoryRepo;
@@ -27,10 +30,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 	@Transactional
 	@Override
 	public void addBook(Book book) {
-		Book existant = bookRepo.findBookByIsbn(book.getIsbn());
-		if (existant != null) {
-			bookRepo.save(book);
-		} else {
+		if (!bookRepo.existsByIsbn(book.getIsbn())) {
 			for (Category c : book.getCategories()) {
 				this.addCategory(c);
 				book.getCategories().add(c);
@@ -39,10 +39,37 @@ public class BookStoreServiceImpl implements BookStoreService {
 				this.addAuthor(a);
 				book.getAuthors().add(a);
 			}
-			bookRepo.save(book);
 		}
+		bookRepo.save(book);
+	}
+	
+	@Transactional
+	@Override
+	public void updateBook(Book book) {
+		for (Category c : book.getCategories()) {
+			this.addCategory(c);
+			book.getCategories().add(c);
+		}
+		for (Author a : book.getAuthors()) {
+			this.addAuthor(a);
+			book.getAuthors().add(a);
+		}
+		bookRepo.save(book);
 	}
 
+
+	@Transactional
+	@Override
+	public Optional<Book> getBook(Long id) {
+		return bookRepo.findById(id);
+	}
+	
+	@Transactional
+	@Override
+	public void deleteBook(Long id) {
+		bookRepo.deleteById(id);
+	}
+	
 	@Transactional(readOnly = true)
 	@Override
 	public List<Book> getAllBooks() {
