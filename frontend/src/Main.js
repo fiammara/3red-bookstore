@@ -10,7 +10,7 @@ import AddSeller from './AddSeller';
 import SignUp from './SignUp';
 
 import BookList from './BookList';
-
+import Users from './Users';
 
 
 const Main = () => (
@@ -22,6 +22,7 @@ const Main = () => (
       <Route exact path='/adminmenu/addAdmin' component={AddAdmin}></Route>
       <Route exact path='/adminmenu/addSeller' component={AddSeller}></Route>
       <Route exact path='/adminmenu/allBooks' component={BookList}></Route>
+      <Route exact path='/adminmenu/users' component={Users}></Route>
     </Switch>
   );
 

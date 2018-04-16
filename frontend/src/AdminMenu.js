@@ -9,6 +9,7 @@ const AdminMenu = () => (
         <li><NavLink to='/adminmenu/addSeller'>Add new seller</NavLink></li>
         <li><NavLink to='/adminmenu/addBook'>Add new book</NavLink></li>
         <li><NavLink to='/adminmenu/allBooks'>Visos knygos</NavLink></li>
+        <li><NavLink to='/adminmenu/users'>Vartotojai</NavLink></li>
       </ul>
     </nav>
   );

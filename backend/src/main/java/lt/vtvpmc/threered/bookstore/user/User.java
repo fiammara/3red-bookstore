@@ -32,7 +32,7 @@ public abstract class User {
 	@Length(max = 40)
 	private String username;
 	@NotNull
-	@Length(min = 8, max = 30)
+	//@Length(min = 8, max = 30)
 	private String password;
 //	@NotNull
 	@Transient
