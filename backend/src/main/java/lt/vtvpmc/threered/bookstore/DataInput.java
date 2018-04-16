@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 
 import lt.vtvpmc.threered.bookstore.author.Author;
 import lt.vtvpmc.threered.bookstore.book.Book;
-import lt.vtvpmc.threered.bookstore.book.BookStoreService;
 import lt.vtvpmc.threered.bookstore.category.Category;
+import lt.vtvpmc.threered.bookstore.db.DBService;
 import lt.vtvpmc.threered.bookstore.role.Role;
 import lt.vtvpmc.threered.bookstore.role.RoleRepository;
 
 @Component
 public class DataInput implements CommandLineRunner {
 	@Autowired
-	private BookStoreService bookService;
+	private DBService bookService;
 	@Autowired
 	private RoleRepository roleRepo;
 
