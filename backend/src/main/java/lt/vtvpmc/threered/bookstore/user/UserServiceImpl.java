@@ -75,33 +75,23 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void updateUser(long id, UserCreate user) {
 		User exist = userRepository.findById(id).get();
-		if (exist.getRole().equals("Admin")) {
-			User admin = new Administrator();
-			admin.setFirstName(user.getFirstName());
-			admin.setLastName(user.getLastName());
-			admin.setPhoneNo(user.getPhoneNo());
-			admin.setEmail(user.getEmail());
-			admin.setPassword(passwordEncoder.encode(user.getPassword()));
-			admin.setUsername(user.getUsername());			
-			admin.setRole(roleRepository.findRoleByName("Admin"));
-			userRepository.save(admin);
+		
+			exist.setId(id);
+			exist.setFirstName(user.getFirstName());
+			exist.setLastName(user.getLastName());
+			exist.setPhoneNo(user.getPhoneNo());
+			exist.setEmail(user.getEmail());
+			exist.setPassword(user.getPassword());
+			exist.setUsername(user.getUsername());			
+			
+			userRepository.save(exist);
 }
  
-		else if (exist.getRole().equals("Seller")) {
-			User seller = new Seller();
-			seller.setFirstName(user.getFirstName());
-			seller.setLastName(user.getLastName());
-			seller.setPassword(passwordEncoder.encode(user.getPassword()));
-			seller.setPhoneNo(user.getPhoneNo());
-			seller.setEmail(user.getEmail());
-			seller.setUsername(user.getUsername());
-			seller.setRole(roleRepository.findRoleByName("Seller"));
-			userRepository.save(seller);
-}
+		
+
     //@Override
 	//public boolean isUserExist(User user) {
       //  return findByName(user.getFirstName())!=null;
    // }
     }  
  
-}

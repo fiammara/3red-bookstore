@@ -64,13 +64,7 @@ public abstract class User {
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
 private List<Authority> authorities;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 
 	public String getUsername() {
 		return username;
@@ -149,6 +143,10 @@ private List<Authority> authorities;
 	   public void setEnabled(Boolean enabled) {
 	        this.enabled = enabled;
 	   }
+
+	public void setId(long id) {
+			
+	}
 
 	   
 
