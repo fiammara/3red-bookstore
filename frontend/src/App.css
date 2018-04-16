@@ -8,30 +8,103 @@ html {
   margin: 0;
 }
 
-.menuHeader ul {
-  list-style: none;
-  display: flex;
-  background-color: grey;
+body {
   margin: 0 auto;
 }
 
-.menuHeader ul li {
-  padding: 20px;
-  display: block;
+/* side menu */
+
+.Navbar{
+    background-color: #202538;
+    font-size: 0.85em;
+    height: 80vh;
+    width:15%;
+    float: left;
+    
 }
 
-.menuHeader ul li a {
-  color: white;
+.navmenu ul {
+  
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+      
+}
+  
+.navmenu ul li a {
+  color: #7d859c;
+  padding: 10px 15px 10px 15px;
+  display: block;
+  text-decoration: none;
+      
+} 
+  
+.navmenu ul li a:hover {
+  background-color: #16a4fa;
+  color: #ffffff;
+  
+}
+
+.menu-icon {
+  padding-right: 10px;
+}
+
+/* top menu */
+
+.navbartop{
+  height:10vh; 
+  background-color: #303549;
+  font-size: 0.85em;
+  position: relative;
+ }
+ 
+ .name {
+  text-align: center;
+  margin: 0;
+  color: #7d859c;
+}
+
+.topmenu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.topmenu li {
+  float: left;
+  height: 100%;
+  box-sizing: border-box;
+  display: table;
+}
+
+.topmenu li:hover {
+  background-color: #202538;
+}
+
+.topmenu li a {
+
+  color: #ffffff;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding: 10px 5px 10px 5px;
   text-decoration: none;
 }
 
-.main{
-  position: relative;
-  left:0px;
-  padding-left: 20px;
-  padding-top: 20px;
-}
 
+ /* footer */
+
+ .footer{
+ background: #181e2c;
+ height: 10vh;
+ clear: both;
+
+ }
+ 
 .bookTitle{
   color: green;
 }

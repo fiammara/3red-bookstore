@@ -1,42 +1,24 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import Navbar from 'react-bootstrap/lib/Navbar';
 
-import Navbar  from 'react-bootstrap/lib/Navbar';
-import FormGroup from 'react-bootstrap/lib/Form';
-import FormControl from 'react-bootstrap/lib/Form';
+function NavbarTop() {
 
-import Button from 'react-bootstrap/lib/Button';
-import './components.css';
+  return (
+    <Navbar className="navbartop">
+      <div className="name">
+        <p><i className="fa fa-book menu-icon" aria-hidden="true"></i>Knygų Parduotuvė</p>
+      </div>
+      <div className="headermenu">
+        <ul className="topmenu">
+          <li><NavLink to='/'>Pagalba</NavLink></li>
+          <li><NavLink to='/'>Susisiekti</NavLink></li>
+          <li><NavLink to='/'>Prisijungti <i className="fa fa-check-circle" aria-hidden="true"></i></NavLink></li>
+        </ul>
+      </div>
+    </Navbar>
 
-function NavbarTop(){
-
-    return(
-
-<div>
-<Navbar className="navbartop">
-  <Navbar.Header>
-    <Navbar.Brand>
-      <a href="#home">All books</a>
-      
-      <a href="#home">Most Recent</a>
-      
-      <a href="#home">Most Popular</a>
-      
-      <a href="#home">Free Books</a>
-    </Navbar.Brand>
-    <Navbar.Toggle />
-  </Navbar.Header>
-  <Navbar.Collapse>
-    <Navbar.Form pullLeft>
-      <FormGroup>
-        <FormControl type="text" placeholder="Search" />
-      </FormGroup>{' '}
-      <Button type="submit">Submit</Button>
-    </Navbar.Form>
-  </Navbar.Collapse>
-</Navbar>
-  </div>
-
-)
+  )
 
 }
 export default NavbarTop
