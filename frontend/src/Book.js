@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Author from './Author';
+import { Link } from "react-router-dom";
 
 class Book extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class Book extends Component {
                 <p> {this.props.book.year} m.</p>
                 <p> ISBN: {this.props.book.isbn} </p>
                 <p><strong> Kaina: </strong> {this.props.book.price} EUR </p> <br/>
+                <Link to={"/adminmenu/addBook/"+this.props.book.id}>Taisyti</Link>
             </div>
         );
     }
