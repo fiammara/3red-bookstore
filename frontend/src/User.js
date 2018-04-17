@@ -31,7 +31,7 @@ class User extends Component {
         this.setState({ mode: 'view' });
         event.preventDefault();
 
-        const newAdmin = {
+        const UpdatedUser = {
 
             "userType": 'ADMIN',
             "firstName": this.state.fname,
@@ -42,9 +42,9 @@ class User extends Component {
             "password": this.state.password,
             "passwordConfirm": this.state.password
         }
-
-        axios.delete('http://localhost:8080/api/users/' + this.props.user.id).then(console.log('ištryniau'))
-        axios.post('http://localhost:8080/api/users', newAdmin);
+        axios.put('http://localhost:8080/api/users/'+ this.props.user.id, UpdatedUser).then(console.log('prideta'));
+        console.log(UpdatedUser);
+ 
         this.setState({ mode: 'view' });
     }
 

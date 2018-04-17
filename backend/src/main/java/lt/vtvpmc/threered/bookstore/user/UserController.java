@@ -64,7 +64,7 @@ public class UserController {
 	
 	
 	@RequestMapping(path= "/{id}", method = RequestMethod.PUT)
-	public void updateUser(@PathVariable Long id, @ApiParam @RequestBody @Valid UserCreate user){
+	public void updateUser(@PathVariable Long id, @ApiParam @RequestBody UserCreate user){
 		userService.updateUser(id, user);
 }
 

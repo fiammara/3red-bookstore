@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService{
     }
     @Transactional
 	@Override
-	public void updateUser(long id, UserCreate user) {
+	public void updateUser(Long id, UserCreate user) {
 		User exist = userRepository.findById(id).get();
 		
 			exist.setId(id);

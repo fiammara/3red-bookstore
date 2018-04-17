@@ -16,9 +16,7 @@ public interface UserService {
 
 	void addUser(UserCreate user);
 
-	
-
-	void updateUser(long id, UserCreate user);
+	void updateUser(Long id, UserCreate user);
 
 	
 

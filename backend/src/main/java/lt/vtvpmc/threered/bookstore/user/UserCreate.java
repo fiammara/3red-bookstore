@@ -20,17 +20,10 @@ public class UserCreate {
 	@NotNull
 	private String phoneNo;
 	private String email;
-	private long id;
+	
 	
 
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public UserType getUserType() {
 		return userType;
